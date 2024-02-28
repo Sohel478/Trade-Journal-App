@@ -1,0 +1,88 @@
+.hero-banner {
+    background: url('./candle-stick-graph-chart-stock-market-investment-trading-bullish-point-bearish-point_258787-2700.avif') center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+  }
+  
+  .pricing-section {
+    /* background-color: #f8f9fa; */
+    /* padding: 50px 0; */
+  }
+  
+  .pricing-card {
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .pricing-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .pricing-card-header {
+    background-color: black !important;
+    color: #fff !important;
+    padding: 20px;
+  }
+  
+  .pricing-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .pricing-card-body {
+    padding: 20px;
+  }
+  
+  .pricing-card-features {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .pricing-card-feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .pricing-card-feature-icon {
+    margin-right: 10px;
+  }
+  
+  .pricing-card-price {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-top: 20px;
+  }
+
+  .toggle-container{
+    border: 1px solid black;
+    border-radius: 23px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .monthly-toggle:hover,
+.yearly-toggle:hover {
+  background-color: black !important; 
+  color: white !important;
+}
+
+.pricing-card-wrapper {
+  display: flex;
+}
+
+.pricing-card {
+  flex: 1;
+}
+
+.pricing-card-body {
+  flex-grow: 1;
+}
+
+
+
+
+
