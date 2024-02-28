@@ -24,4 +24,9 @@
     .signup__image--container {
         display: none;
     }
+
+    .signup__form--container,
+.login__form--container {
+    flex-direction: row;
+}
 }
