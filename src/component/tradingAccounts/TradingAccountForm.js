@@ -2,9 +2,11 @@ import { useFormik } from "formik";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { tradingAccountAdd } from "../../store/slice/tradingAccountsSlice";
+import {useNavigate} from 'react-router-dom'
 
 const TradingAccountForm = ({ setFormStatus }) => {
   const token = useSelector((state) => state?.auth?.token);
+  const nav = useNavigate()
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -13,7 +15,14 @@ const TradingAccountForm = ({ setFormStatus }) => {
       account_email: "",
       account_name: "",
       trading_account: "",
-      purpose:""
+      purpose: ""
+    },
+    validate: (values) => {
+      const errors = {};
+      if (!values.purpose) {
+        errors.purpose = "Purpose is required";
+      }
+      return errors;
     },
     onSubmit: (values) => {
       console.log(values);
@@ -22,11 +31,13 @@ const TradingAccountForm = ({ setFormStatus }) => {
         token: token,
         values,
       };
-      console.log(payload,"payloaddd")
+      console.log(payload, "payloaddd")
       dispatch(tradingAccountAdd(payload));
       setFormStatus("list")
     },
   });
+
+
   return (
     <div className="strategy-box">
       <form className="trade">
@@ -39,6 +50,7 @@ const TradingAccountForm = ({ setFormStatus }) => {
             value={formik.values.trading_account}
             onChange={formik.handleChange}
             placeholder="id format alphanumeric"
+            required
           >
             <option>Select Your Trading Accounts</option>
             {/* <option>Account 1</option>
@@ -75,6 +87,7 @@ const TradingAccountForm = ({ setFormStatus }) => {
             value={formik.values.account_name}
             onChange={formik.handleChange}
             placeholder="id format alphanumeric"
+            required
           />
           <label htmlFor="account_email">Email Address</label>
           <input
@@ -84,6 +97,7 @@ const TradingAccountForm = ({ setFormStatus }) => {
             value={formik.values.account_email}
             onChange={formik.handleChange}
             placeholder="example@gmail.com"
+            required
           />
           <label htmlFor="account_mobile">Mobile Number</label>
           <input
@@ -93,6 +107,7 @@ const TradingAccountForm = ({ setFormStatus }) => {
             value={formik.values.account_mobile}
             onChange={formik.handleChange}
             placeholder="1234567890"
+            required
           />
         </div>
         <div className="form-tile">
@@ -112,7 +127,11 @@ const TradingAccountForm = ({ setFormStatus }) => {
             value={formik.values.purpose}
             onChange={formik.handleChange}
             placeholder="Write here..."
+            required
           />
+          {formik.errors.purpose ? (
+            <div className="error">{formik.errors.purpose}</div>
+          ) : null}
           <div className="btn-box">
             <button className="cancel" onClick={() =>{
               formik.handleReset()

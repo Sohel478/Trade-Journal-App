@@ -211,7 +211,7 @@ function TradeLog() {
     reason_for_trade: Yup.string(),
     percentage_of_account_risked: Yup.number(),
     trade_slippage: Yup.number(),
-    trade_penalties: Yup.number().required("Required"),
+    trade_penalties: Yup.number(),
     net_roi: Yup.number(),
     trade_customizable: Yup.string(),
     opening_balance: Yup.number().when("trade_date", {

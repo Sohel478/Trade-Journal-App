@@ -31,6 +31,10 @@ const Tools = () => {
   const [path, setPath] = useState("tools/sessions");
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+  const [originalRating, setOriginalRating] = useState('');
+  const [rating, setRating] = useState('');
+  const [lesson, setLesson] = useState()
+  const [category, setCategory] = useState()
   const dispatch = useDispatch();
   const sessionsFormData = useRef({
     session_startDate: null,
@@ -193,11 +197,17 @@ const Tools = () => {
   };
 
   const onResetSessionsData = () => {
-    sessionsFormData.current.session_startDate = null;
-    sessionsFormData.current.session_endDate = null;
-    sessionsFormData.current.session_category = null;
-    sessionsFormData.current.session_rating = null;
-    sessionsFormData.current.session_lessonsLearned = null;
+    // sessionsFormData.current.session_startDate = null;
+    // sessionsFormData.current.session_endDate = null;
+    // sessionsFormData.current.session_category = null;
+    // sessionsFormData.current.session_rating = null;
+    // sessionsFormData.current.session_lessonsLearned = null;
+    setStartDate(null)
+    setEndDate(null)
+    setRating(originalRating);
+    setCategory("")
+    setLesson("")
+
   };
 
   function formatDate(dateString) {
@@ -345,10 +355,13 @@ const Tools = () => {
                             <div className="customDateInput ">
                               <select
                                 className="select-width "
+                                value={rating}
                                 onChange={(e) => {
+                                  setRating(e.target.value)
                                   sessionsFormData.current.session_rating =
                                     e.target.value;
                                 }}
+                                onFocus={() => setOriginalRating(rating)}
                               >
                                 <option>Select Rating</option>
                                 <option value="1">1</option>
@@ -371,7 +384,9 @@ const Tools = () => {
                               type="text"
                               className="customDateInput"
                               placeholder="Sessions Category"
+                              value={category}
                               onChange={(e) => {
+                                setCategory(e.target.value)
                                 sessionsFormData.current.session_category =
                                   e.target.value;
                               }}
@@ -384,7 +399,9 @@ const Tools = () => {
                       <textarea
                         placeholder="Lessons Learned (max 300 characters)"
                         className="customDateInput"
+                        value={lesson}
                         onChange={(e) => {
+                          setLesson(e.target.value)
                           sessionsFormData.current.session_lessonsLearned =
                             e.target.value;
                         }}

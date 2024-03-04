@@ -110,9 +110,9 @@ const strag = converter(tradesData.filterData[4].selected);
   //   reduxData.trades?.end && currentMonthRangeNew(reduxData.trades?.end);
 
   const currentStart =
-  tradesData?.start && currentMonthRangeNew(trades?.start);
+  tradesData?.start && currentMonthRangeNew(selectTrades?.start);
   const currentEnd =
-  tradesData?.end && currentMonthRangeNew(trades?.end);
+  tradesData?.end && currentMonthRangeNew(selectTrades?.end);
 
   const updateDashboardData = () => {
     const startDate = currentStart || oldStart;

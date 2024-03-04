@@ -129,16 +129,30 @@ form.trade {
     }
   }
 }
-.add-btn {
-  width: 10rem;
-  padding: 1rem 2rem;
-  display: flex;
-  margin-left: auto;
-  border-radius: 10px;
-  color: white;
-  background: #0075ff;
-  white-space: nowrap;
-  cursor: pointer;
+// .add-btn {
+//   width: 10rem;
+//   padding: 1rem 2rem;
+//   display: flex;
+//   margin-left: auto;
+//   border-radius: 10px;
+//   color: white;
+//   background: #0075ff;
+//   white-space: nowrap;
+//   cursor: pointer;
+// }
+
+
+.add-new-trading-btn{
+  width: 250px;
+    padding: 1rem 2rem;
+    display: flex;
+    margin-left: auto;
+    border-radius: 10px;
+    color: white;
+    background: #0075ff;
+    white-space: nowrap;
+    cursor: pointer;
+    margin-bottom: 15px;
 }
 
 .list-head {
@@ -148,6 +162,7 @@ form.trade {
   width: 95%;
   margin: auto;
   font-family: "Inter";
+  word-wrap: break-word;
   & > div {
     width: 30%;
     background-color: #eef5ff;
@@ -158,9 +173,9 @@ form.trade {
       font-weight: bold;
       margin-bottom: 1.5rem;
     }
-    p {
-      line-height: 0.6;
-    }
+    // p {
+    //   line-height: 0.6;
+    // }
   }
   .add-btn {
     width: 18rem;

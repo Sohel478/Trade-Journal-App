@@ -30,16 +30,46 @@ export const tradingAccountAdd = createAsyncThunk(
   }
 );
 
+// export const tradingAccountEdit = createAsyncThunk(
+//   "tradingAccount/tradingAccountEdit",
+//   async (data) => {
+//     const response = await axios.put(`${apiUrl}/trading-account/update/`, data?.values, {
+//       headers: {
+//         "Content-Type": "application/json",
+//         authorization: `Bearer ${data?.token}`,
+//       },
+//     });
+//     return response;
+//   }
+// );
+
 export const tradingAccountEdit = createAsyncThunk(
   "tradingAccount/tradingAccountEdit",
   async (data) => {
-    const response = await axios.put(`${apiUrl}/trading-account/update/`, data?.values, {
+    const response = await axios.put(
+      `${apiUrl}/trading-account/update/${data.id}`,
+      data.values,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${data.token}`,
+        },
+      }
+    );
+    return response;
+  }
+);
+
+export const tradingAccountDelete = createAsyncThunk(
+  "tradingAccount/tradingAccountDelete",
+  async (id) => {
+    const response = await axios.delete(`${apiUrl}/trading-account/${id}`, {
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${data?.token}`,
+        // Add authorization if needed
       },
     });
-    return response;
+    return response.data; // Return only data for deletion
   }
 );
 
@@ -68,6 +98,9 @@ const tradingAccountSlice = createSlice({
   reducers: {
     addNewData: (state, action) => {
       state.payloadHold = action.payload;
+    },
+    deleteData: (state, action) => {
+      state.data = state.data.filter((item) => item.id !== action.payload.id);
     },
   },
   extraReducers: (builder) => {
@@ -107,8 +140,21 @@ const tradingAccountSlice = createSlice({
       .addCase(tradingAccountEdit.rejected, (state, action) => {
         state.isLoading = false;
         state.isAddedOrEdited = false;
+      })
+      .addCase(tradingAccountDelete.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(tradingAccountDelete.fulfilled, (state, action) => {
+        state.isLoading = false;
+        // Call deleteData reducer to remove the deleted trading account from the state
+        state = deleteData(state, action);
+      })
+      .addCase(tradingAccountDelete.rejected, (state, action) => {
+        state.isLoading = false;
       });
   },
 });
+
+export const { addNewData, deleteData } = tradingAccountSlice.actions;
 
 export default tradingAccountSlice.reducer;

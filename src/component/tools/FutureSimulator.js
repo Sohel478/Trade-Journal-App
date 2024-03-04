@@ -24,7 +24,7 @@ import { tradeLogUpdateFilter } from "../../store/slice/tradeLogSlice";
 const FutureSimulator = () => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
-  const [year, setYear] = useState();
+  const [year, setYear] = useState(null);
   const [stockData, setStockData] = useState([]);
   const reduxData = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -108,10 +108,7 @@ const FutureSimulator = () => {
     setStockData(data);
   };
 
-  const resetDate = () => {
-    setStartDate(null);
-    setEndDate(null);
-  };
+
 
   const isOneMonthGap = () => {
     // Assuming startDate and endDate are Date objects
@@ -211,6 +208,22 @@ const FutureSimulator = () => {
     }
   };
 
+  const resetDate = () => {
+    setStartDate(null);
+    setEndDate(null);;
+    setYear("Select Year");
+  };
+
+  const handleEndDateChange = (date) => {
+    // Check if the selected endDate is before the startDate
+    if (startDate && date < startDate) {
+      // Show an alert or any other notification to the user
+      alert("End date must be after the start date!");
+      return; // Don't update the endDate if the condition fails
+    }
+    setEndDate(date); // Update endDate if the condition passes
+  };
+
   return (
     <>
       <div className="future-simulator-header">
@@ -222,6 +235,7 @@ const FutureSimulator = () => {
                 onChange={(e) => {
                   setYear(e.target.value);
                 }}
+                value={year}
               >
                 <option>Select Year</option>
                 <option value="1">1</option>
@@ -244,7 +258,8 @@ const FutureSimulator = () => {
           <div>
             <DatePicker
               selected={endDate}
-              onChange={(date) => setEndDate(date)}
+              // onChange={(date) => setEndDate(date)}
+              onChange={handleEndDateChange} // Use the custom function
               dateFormat="dd/MM/yyyy"
               customInput={<ExampleCustomInput />}
               placeholderText="End Date"

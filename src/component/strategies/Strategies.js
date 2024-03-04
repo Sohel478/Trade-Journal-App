@@ -44,8 +44,9 @@ const Strategies = () => {
   const { formStatus } = useStrategy();
   return (
     <>
+     {formStatus === "add" || formStatus === "edit" ? <StrategyForm /> : null }
       <StrategiesBox strategies={strategies} />
-      {formStatus === "add" || formStatus === "edit" ? <StrategyForm /> : null }
+     
     </>
   );
 };
