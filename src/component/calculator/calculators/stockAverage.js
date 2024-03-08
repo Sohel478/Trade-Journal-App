@@ -31,22 +31,42 @@ const StockAverage = () => {
     }
   };
 
+  // const handleCalculateClick = () => {
+  //   let totalQuantity = 0;
+  //   let totalAmount = 0;
+  //   stocks.forEach((stock) => {
+  //     totalQuantity += Number(stock.quantity);
+  //     totalAmount += Number(stock.quantity) * Number(stock.entryPrice);
+  //   });
+  //   totalQuantity -= stocks[0].quantity;
+  //   totalAmount -= stocks[0].quantity * stocks[0].entryPrice;
+  //   const averagePrice = totalAmount / totalQuantity;
+  //   setResult({
+  //     "Total Quantity": totalQuantity,
+  //     "Average Price": averagePrice.toFixed(2),
+  //     "Total Amount": totalAmount.toFixed(2),
+  //   });
+  // };
+
   const handleCalculateClick = () => {
-    let totalQuantity = 0;
-    let totalAmount = 0;
-    stocks.forEach((stock) => {
-      totalQuantity += Number(stock.quantity);
-      totalAmount += Number(stock.quantity) * Number(stock.entryPrice);
-    });
-    totalQuantity -= stocks[0].quantity;
-    totalAmount -= stocks[0].quantity * stocks[0].entryPrice;
-    const averagePrice = totalAmount / totalQuantity;
-    setResult({
-      "Total Quantity": totalQuantity,
-      "Average Price": averagePrice.toFixed(2),
-      "Total Amount": totalAmount.toFixed(2),
-    });
+    if (stocks.length > 0) {
+      let totalQuantity = 0;
+      let totalAmount = 0;
+      stocks.forEach((stock) => {
+        totalQuantity += Number(stock.quantity);
+        totalAmount += Number(stock.quantity) * Number(stock.entryPrice);
+      });
+      const averagePrice = totalAmount / totalQuantity;
+      setResult({
+        "Total Quantity": totalQuantity,
+        "Average Price": averagePrice.toFixed(2),
+        "Total Amount": totalAmount.toFixed(2),
+      });
+    }
   };
+  
+
+
 
   const handleResetClick = () => {
     inputRef.current.quantity.value = null;

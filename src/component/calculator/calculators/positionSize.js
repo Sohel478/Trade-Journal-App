@@ -27,10 +27,29 @@ const PositionSize = () => {
       Loss: 0,
     });
   };
+  // const onCalculate = () => {
+  //   const { investment, risk, entry, stopLoss, target } = inputRef.current;
+  //   let positionSize =
+  //     (investment.value * risk.value) / (entry.value - stopLoss.value);
+  //   let profit = positionSize * (target.value - entry.value);
+  //   let loss = positionSize * (entry.value - target.value);
+  //   positionSize = positionSize > 0 ? positionSize : 0;
+  //   profit = profit > 0 ? profit : 0;
+  //   loss = loss > 0 ? loss : 0;
+  //   setResult({
+  //     "Position Size": positionSize.toFixed(2),
+  //     Profit: profit.toFixed(2),
+  //     Loss: loss.toFixed(2),
+  //   });
+  // };
+
   const onCalculate = () => {
     const { investment, risk, entry, stopLoss, target } = inputRef.current;
+    const riskPercentage = risk.value / 100; // Converting risk percentage to decimal
+    const riskPerTrade = investment.value * riskPercentage;
+  
     let positionSize =
-      (investment.value * risk.value) / (entry.value - stopLoss.value);
+      riskPerTrade / (entry.value - stopLoss.value);
     let profit = positionSize * (target.value - entry.value);
     let loss = positionSize * (entry.value - target.value);
     positionSize = positionSize > 0 ? positionSize : 0;
@@ -42,6 +61,9 @@ const PositionSize = () => {
       Loss: loss.toFixed(2),
     });
   };
+  
+
+
   return (
     <Container>
       <Row>
@@ -144,3 +166,8 @@ const PositionSize = () => {
 };
 
 export default PositionSize;
+
+//In Position size calculator, Risk per trade should be % instead of value
+// Convert the risk percentage to a decimal value (e.g., 2% risk would be 0.02).
+// Multiply the investment value by the risk percentage to get the amount of risk per trade.
+// Use the risk per trade instead of the direct risk value in your position size calculation.

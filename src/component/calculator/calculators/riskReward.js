@@ -11,14 +11,29 @@ const RiskReward = () => {
   const [result, setResult] = useState({
     "Risk : Reward": 0,
   });
-  const onCalculate=()=>{
-    const {entry,target,stopLoss}=inputRef.current;
-    let riskReward=(target.value-entry.value)/(entry.value-stopLoss.value);
-    riskReward=riskReward>0?riskReward:0;
+  // const onCalculate=()=>{
+  //   const {entry,target,stopLoss}=inputRef.current;
+  //   let riskReward=(target.value-entry.value)/(entry.value-stopLoss.value);
+  //   riskReward=riskReward>0?riskReward:0;
+  //   setResult({
+  //     "Risk : Reward":riskReward.toFixed(2),
+  //   });
+  // }
+
+  const onCalculate = () => {
+    const { entry, target, stopLoss } = inputRef.current;
+    let riskReward = (target.value - entry.value) / (entry.value - stopLoss.value);
+    riskReward = riskReward > 0 ? riskReward : 0;
+    
+    // Convert the ratio to a string in the format "X:Y"
+    const ratioString = `${riskReward.toFixed(0)}:1`;
+    
     setResult({
-      "Risk : Reward":riskReward.toFixed(2),
+      "Risk : Reward": ratioString,
     });
-  }
+  };
+  
+
   const onResetFields=()=>{
     inputRef.current.entry.value=null;
     inputRef.current.target.value=null;
