@@ -70,7 +70,7 @@ const StockAverage = () => {
             <div className="individual-stocks">
               <p className="fieldsLabel">Quantity</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="00"
                 name="quantity"
@@ -81,7 +81,7 @@ const StockAverage = () => {
               />
               <p className="fieldsLabel">Entry Price</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="Rs.0000"
                 name="entryPrice"
@@ -99,7 +99,7 @@ const StockAverage = () => {
                   <div key={index} className="individual-stocks">
                     <p className="fieldsLabel">Quantity</p>
                     <input
-                      type="text"
+                      type="number"
                       className="customFieldInput"
                       placeholder="00"
                       value={stock.quantity}
@@ -107,7 +107,7 @@ const StockAverage = () => {
                     />
                     <p className="fieldsLabel">Entry Price</p>
                     <input
-                      type="text"
+                      type="number"
                       className="customFieldInput"
                       placeholder="Rs.0000"
                       value={stock.entryPrice}

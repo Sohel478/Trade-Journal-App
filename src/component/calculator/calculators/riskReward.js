@@ -38,7 +38,7 @@ const RiskReward = () => {
             <div>
               <p className="fieldsLabel">Entry Price</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="Rs.0000"
                 name="entry"
@@ -51,7 +51,7 @@ const RiskReward = () => {
             <div>
               <p className="fieldsLabel">Target</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="Rs.0000"
                 name="target"
@@ -64,7 +64,7 @@ const RiskReward = () => {
             <div>
               <p className="fieldsLabel">Stop Loss</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="Rs.0000"
                 name="stopLoss"

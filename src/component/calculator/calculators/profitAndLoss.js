@@ -44,7 +44,7 @@ const ProfitAndLoss = () => {
             <div>
               <p className="fieldsLabel">Quantity</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="00"
                 name="quantity"
@@ -57,7 +57,7 @@ const ProfitAndLoss = () => {
             <div>
               <p className="fieldsLabel">Entry</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="Rs.0000"
                 name="entry"
@@ -71,7 +71,7 @@ const ProfitAndLoss = () => {
             <div>
               <p className="fieldsLabel">Exit</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="Rs.0000"
                 name="exit"

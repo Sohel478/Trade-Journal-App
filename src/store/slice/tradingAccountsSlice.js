@@ -60,18 +60,25 @@ export const tradingAccountEdit = createAsyncThunk(
   }
 );
 
+
+
 export const tradingAccountDelete = createAsyncThunk(
   "tradingAccount/tradingAccountDelete",
-  async (id) => {
-    const response = await axios.delete(`${apiUrl}/trading-account/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        // Add authorization if needed
-      },
-    });
-    return response.data; // Return only data for deletion
+  async ( data ) => {
+    try {
+      const response = await axios.delete(`${apiUrl}/trading-account/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${data.token}`,
+        },
+      });
+      return response.data
+    } catch (error) {
+      throw error
+    }
   }
 );
+
 
 export const tradingAccountUpdateFilter = createAsyncThunk(
   "tradingAccount/tradingAccountFilter",

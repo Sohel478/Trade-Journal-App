@@ -1,45 +1,52 @@
-import React from "react";
-// import {useDispatch} from 'react-redux'
-// import {tradingAccountDelete} from '../../store/slice/tradingAccountsSlice'
+import { useDispatch,useSelector } from "react-redux";
+import axios from 'axios'
 
-const TradeAccountList = ({ list, setFormStatus }) => {
+const TradeAccountList = ({ list, setFormStatus,setEditData }) => {
+  const token = useSelector((state) => state.auth.token);
 
-  // const dispatch = useDispatch()
-  // const handleDelete = async (id) => {
-  //   try {
-  //     const response = await dispatch(tradingAccountDelete(id));
-  //     if (response.payload.status === 200) {
-  //       console.log(response.payload.message);
-  //     } else {
-  //       console.error(response.payload.message);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  // };
-  
+
+  const handleEdit = (item) => {
+    setEditData(item);
+    setFormStatus('edit');
+  };
+
+  const handleDelete = (id) => {
+    try { 
+      const response =  axios.delete(`http://localhost:8080/v1/api/trading-account/${id}`,{
+        headers : {
+          "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+        },
+      })
+      // console.log("response data",response.data);
+      window.location.reload()
+      return response.data;
+    } catch (error) {
+      console.log("Error Occured while delete", error);
+    }
+  };
+
+
+
   return (
-<>
-<div className='add-new-trading-btn' onClick={() => setFormStatus('add')}>+ Add New Trading Account</div>
-<div className="list-head">
-      {list.map((el) => (
-        <div key={el?.account_Id}>
-          <h3>{el?.account_name}</h3>
-          <p>{el?.trading_account}</p>
-          <p>{el?.account_email}</p>
-          <p>{el?.account_mobile}</p>
-          <p>{el?.purpose}</p>
-          {/* <div>
-              <button onClick={() => handleEdit(el)}>Edit</button>
-              <button onClick={() => handleDelete(el.account_Id)}>Delete</button>
-            </div> */}
-        </div>
-      ))}
-    </div>
-
-
-</>
+    <>
+     <div className='add-new-trading-btn' onClick={() => setFormStatus('add')}>+ Add New Trading Account</div>
+      <div className="list-head">
+        {list.map((el) => (
+          <div key={el?.id}>
+            <h3>{el?.account_name}</h3>
+            <p>{el?.trading_account}</p>
+            <p>{el?.account_email}</p>
+            <p>{el?.account_mobile}</p>
+            <p>{el?.purpose}</p>
+            <button onClick={() => handleEdit(el)}>Edit</button>
+            <button onClick={() => handleDelete(el.id)}>Delete</button>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
 export default TradeAccountList;
+

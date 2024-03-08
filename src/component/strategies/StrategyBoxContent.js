@@ -4,10 +4,11 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { useStrategy } from "../../context/StrategyContext";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { strategyRemove } from "../../store/slice/strategySlice";
 
 const StrategiesBoxContent = ({ strategy }) => {
+  const token = useSelector((state) => state?.auth?.token);
   const [showMore, setShowMore] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const { setFormData, setFormToggle, setFormStatus } = useStrategy();
@@ -22,7 +23,8 @@ const StrategiesBoxContent = ({ strategy }) => {
     setFormStatus("edit");
   };
   const removeHandler = () => {
-    dispatch(strategyRemove({ values: {strategies_Id: strategy.id}}))
+    dispatch(strategyRemove({ token:token, values: {strategies_Id: strategy.id}}))
+    window.location.reload()
   }
   return (
     <div

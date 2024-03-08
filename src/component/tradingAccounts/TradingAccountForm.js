@@ -1,22 +1,33 @@
 import { useFormik } from "formik";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { tradingAccountAdd } from "../../store/slice/tradingAccountsSlice";
+import { tradingAccountAdd,tradingAccountEdit } from "../../store/slice/tradingAccountsSlice";
 import {useNavigate} from 'react-router-dom'
+import { useEffect } from "react";
 
-const TradingAccountForm = ({ setFormStatus }) => {
+const TradingAccountForm = ({ setFormStatus,editData }) => {
   const token = useSelector((state) => state?.auth?.token);
   const nav = useNavigate()
   const dispatch = useDispatch();
+  
+  // Set initial values based on editData
+  const initialValues = editData ? {
+    account_client_id: editData.account_client_id || "",
+    account_mobile: editData.account_mobile || "",
+    account_email: editData.account_email || "",
+    account_name: editData.account_name || "",
+    trading_account: editData.trading_account || "",
+    purpose: editData.purpose || ""
+  } : {
+    account_client_id: "",
+    account_mobile: "",
+    account_email: "",
+    account_name: "",
+    trading_account: "",
+    purpose: ""
+  };
+
   const formik = useFormik({
-    initialValues: {
-      account_client_id: "",
-      account_mobile: "",
-      account_email: "",
-      account_name: "",
-      trading_account: "",
-      purpose: ""
-    },
+    initialValues: initialValues,
     validate: (values) => {
       const errors = {};
       if (!values.purpose) {
@@ -26,16 +37,26 @@ const TradingAccountForm = ({ setFormStatus }) => {
     },
     onSubmit: (values) => {
       console.log(values);
-      // delete values.purpose;
       const payload = {
         token: token,
         values,
       };
-      console.log(payload, "payloaddd")
-      dispatch(tradingAccountAdd(payload));
-      setFormStatus("list")
+      if (editData) {
+        // Dispatch the editing action
+        dispatch(tradingAccountEdit({ id: editData.id, ...payload }));
+      } else {
+        // Dispatch the adding action
+        dispatch(tradingAccountAdd(payload));
+      }
+      setFormStatus("list");
     },
   });
+
+  useEffect(() => {
+    if (editData) {
+      formik.setValues({ ...editData });
+    }
+  }, [editData]);
 
 
   return (

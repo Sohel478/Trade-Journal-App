@@ -8,8 +8,10 @@ import TradeAccountList from "./TradeAccountList";
 
 const TradingAccounts = () => {
   const [formStatus, setFormStatus] = useState("list");
-  const dispatch = useDispatch();
+  const [editData, setEditData] = useState(null); 
   const [accountList, setAccountList] = useState([]);
+
+  const dispatch = useDispatch();
   const token = useSelector((state) => state?.auth?.token);
   const reduxData = useSelector((state) => state?.tradingAccounts?.data);
   const isAddedOrEdited = useSelector(
@@ -26,9 +28,10 @@ const TradingAccounts = () => {
   }, [reduxData]);
   return (
     <>
-      {formStatus === "add" && <TradingForm  setFormStatus={setFormStatus}/>}
-      {formStatus === "list" && (
-        <TradeAccountList list={accountList} setFormStatus={setFormStatus} />
+      {formStatus === 'add' && <TradingForm setFormStatus={setFormStatus} />}
+      {formStatus === 'edit' && <TradingForm setFormStatus={setFormStatus} editData={editData} />}
+      {formStatus === 'list' && (
+        <TradeAccountList list={accountList} setFormStatus={setFormStatus} setEditData={setEditData} />
       )}
     </>
   );

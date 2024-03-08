@@ -21,6 +21,7 @@ const StrategyForm = () => {
       };
       if (formStatus === "add") {
         dispatch(strategyAdd(payload));
+        window.location.reload()
       } else if (formStatus === "edit") {
         payload = {
           ...payload,

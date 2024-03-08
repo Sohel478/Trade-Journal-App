@@ -53,7 +53,7 @@ const PositionSize = () => {
             <div>
               <p className="fieldsLabel">Investment Value</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="Rs.0000"
                 name="investment"
@@ -66,7 +66,7 @@ const PositionSize = () => {
             <div>
               <p className="fieldsLabel">Risk per Trade</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="Rs.0000"
                 name="risk"
@@ -79,7 +79,7 @@ const PositionSize = () => {
             <div>
               <p className="fieldsLabel">Entry Price</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="Rs.0000"
                 name="entry"
@@ -94,7 +94,7 @@ const PositionSize = () => {
             <div style={{ marginRight: "120px" }}>
               <p className="fieldsLabel">Stop Loss</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="Rs.0000"
                 name="stopLoss"
@@ -107,7 +107,7 @@ const PositionSize = () => {
             <div>
               <p className="fieldsLabel">Target Price</p>
               <input
-                type="text"
+                type="number"
                 className="customFieldInput"
                 placeholder="Rs.0000"
                 name="target"

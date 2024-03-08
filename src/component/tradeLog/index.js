@@ -146,7 +146,7 @@ function TradeLog() {
   const [accountList, setAccountList] = useState([]);
   const strategyData = useSelector((state) => state?.strategy?.data);
   const tradingAccounts = useSelector((state) => state?.tradingAccounts?.data);
-  const [edit, setEdit] = useState();
+  const [edit, setEdit] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [startDate1, setStartDate1] = useState(new Date());
   const [id, setId] = useState("");
@@ -299,7 +299,7 @@ function TradeLog() {
       const tradeCopy = { ...item };
       delete tradeCopy.createdAt;
       delete tradeCopy.user_id;
-      delete tradeCopy.id;
+      delete tradeCopy.id; 
       return {
         id: item.id,
         data: tradeCopy,
@@ -610,9 +610,9 @@ function TradeLog() {
                   />
                   <ul>
                     <li
-                      onClick={() => {
-                        setEdit(true);
-                      }}
+                      // onClick={() => {
+                      //   setEdit(true);
+                      // }}
                     >
                       Edit
                       <span>
