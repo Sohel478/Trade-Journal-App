@@ -15,11 +15,14 @@ import TradeLog from "../tradeLog";
 import FutureSimulator from "./FutureSimulator";
 import PreviousTradebook from "./PreviousTradebook";
 import * as XLSX from "xlsx";
-import { sessionList, sessionAdd } from "../../store/slice/sessionSlice";
+import { sessionList, sessionAdd, sessionRemove } from "../../store/slice/sessionSlice";
 import { Route,Routes,Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 const Tools = () => {
+  const token = useSelector(state => state.auth.token)
+   const [currentlyEditingIndex, setCurrentlyEditingIndex] = useState(null);
   const navigate=useNavigate();
   const [pastedData, setPastedData] = useState([]);
   const [expandedIndexes, setExpandedIndexes] = useState([]);
@@ -56,7 +59,7 @@ const Tools = () => {
     }
   };
 
-  const token = reduxData?.auth?.token;
+
   const [toolsHeaders, settoolsHeaders] = useState([
     { name: "Sessions", active: true, path: "tools/sessions" },
     { name: "Missed Trade Log", active: false, path: "tools/missed-trade-log" },
@@ -178,30 +181,43 @@ const Tools = () => {
 
   const onSaveSession = () => {
     if (
-      sessionsFormData.current.startDate != null ||
-      (sessionsFormData.current.startDate != "" &&
-        sessionsFormData.current.endDate != null) ||
-      (sessionsFormData.current.endDate != "" &&
-        sessionsFormData.current.session_category != null) ||
-      (sessionsFormData.current.session_category != "" &&
-        sessionsFormData.current.session_rating != null) ||
-      (sessionsFormData.current.session_rating != "" &&
-        sessionsFormData.current.session_lessonsLearned != null) ||
-      sessionsFormData.current.session_lessonsLearned != ""
+      sessionsFormData.current.session_startDate !== null &&
+      sessionsFormData.current.session_endDate !== null &&
+      sessionsFormData.current.session_category !== "" &&
+      sessionsFormData.current.session_rating !== "" &&
+      sessionsFormData.current.session_lessonsLearned !== ""
     ) {
-      dispatch(sessionAdd({ ...sessionsFormData.current, token: token }));
-      onResetSessionsData();
+      if (currentlyEditingIndex !== null && currentlyEditingIndex !== undefined) {
+        // Editing mode is active
+        const updatedSessions = [...sessions];
+        const updatedSession = {
+          ...updatedSessions[currentlyEditingIndex],
+          session_startDate: sessionsFormData.current.session_startDate,
+          session_endDate: sessionsFormData.current.session_endDate,
+          session_category: sessionsFormData.current.session_category,
+          session_rating: sessionsFormData.current.session_rating,
+          session_lessonsLearned: sessionsFormData.current.session_lessonsLearned,
+        };
+        updatedSessions[currentlyEditingIndex] = updatedSession;
+        setSessions(updatedSessions);
+        // Reset form fields and editing flag
+        onResetSessionsData();
+        setCurrentlyEditingIndex(null);
+      } else {
+        // Adding new session
+        dispatch(sessionAdd({ ...sessionsFormData.current, token: token }));
+        onResetSessionsData();
+      }
     } else {
       console.log("Fill all the required fields first..");
     }
   };
+  
+  
+  
+
 
   const onResetSessionsData = () => {
-    // sessionsFormData.current.session_startDate = null;
-    // sessionsFormData.current.session_endDate = null;
-    // sessionsFormData.current.session_category = null;
-    // sessionsFormData.current.session_rating = null;
-    // sessionsFormData.current.session_lessonsLearned = null;
     setStartDate(null)
     setEndDate(null)
     setRating(originalRating);
@@ -238,6 +254,47 @@ const Tools = () => {
       setData(newData);
     }
   }, [reduxData.tools.data, reduxData.tools.currentTab]);
+
+  const handleEditClick = (index) => {
+    const sessionToEdit = sessions[index];
+    // Populate the form fields with the data of the session at the given index
+    setStartDate(new Date(sessionToEdit.session_startDate));
+    setEndDate(new Date(sessionToEdit.session_endDate));
+    setRating(sessionToEdit.session_rating);
+    setCategory(sessionToEdit.session_category);
+    setLesson(sessionToEdit.session_lessonsLearned);
+    // Populate sessionsFormData with the data of the session being edited
+    sessionsFormData.current = {
+      session_startDate: new Date(sessionToEdit.session_startDate),
+      session_endDate: new Date(sessionToEdit.session_endDate),
+      session_category: sessionToEdit.session_category,
+      session_rating: sessionToEdit.session_rating,
+      session_lessonsLearned: sessionToEdit.session_lessonsLearned,
+    };
+    // Set currently editing index
+    setCurrentlyEditingIndex(index);
+  };
+  
+  
+  const handleDeleteClick = async (id) => {
+    console.log("Session ID:", id); 
+    // try {
+    //   const response = await axios.delete(`http://localhost:8080/v1/api/sessions/${sessionId}`, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   });
+    //   console.log(response.data);
+    //   // Handle successful deletion
+    // } catch (error) {
+    //   console.log("Error Occurred while deleting:", error);
+    //   // Handle error
+    // }
+  };
+  
+  
+
 
   return (
     <>
@@ -479,6 +536,14 @@ const Tools = () => {
                                       </>
                                     )}
                                   </td>
+                                   {/* Edit button */}
+                                <td>
+                                  <button onClick={() => handleEditClick(i)}>Edit</button>
+                                </td>
+                                {/* Delete button */}
+                                <td>
+                                  <button onClick={() => handleDeleteClick(i)}>Delete</button>
+                                </td>
                                 </tr>
                               );
                             })}
@@ -539,5 +604,5 @@ const ExampleCustomInput = forwardRef(
         <img src={arrowDown} alt="arrow-down" height="14px" />
       </span>
     </button>
-  )
+  ) 
 );

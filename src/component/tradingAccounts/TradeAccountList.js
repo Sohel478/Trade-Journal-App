@@ -12,7 +12,7 @@ const TradeAccountList = ({ list, setFormStatus,setEditData }) => {
 
   const handleDelete = (id) => {
     try { 
-      const response =  axios.delete(`http://localhost:8080/v1/api/trading-account/${id}`,{
+      const response =  axios.delete(`https://trade-backend-2-2q52m.ondigitalocean.app/v1/api/trading-account/${id}`,{
         headers : {
           "Content-Type": "application/json",
             authorization: `Bearer ${token}`,

@@ -155,6 +155,14 @@ const FutureSimulator = () => {
       startDate,
       endDate
     );
+  
+    // Check if beginningTrade or endingTrade is null before accessing properties
+    if (!beginningTrade || !endingTrade) {
+      // Handle the case when either beginningTrade or endingTrade is null
+      console.error("Beginning trade or ending trade is null.");
+      return; // Return early or throw an error as per your application's logic
+    }
+  
     let months =
       (endDate.getFullYear() - startDate.getFullYear()) * 12 +
       (endDate.getMonth() - startDate.getMonth());
@@ -166,6 +174,7 @@ const FutureSimulator = () => {
     if (CAGR > 1) CAGR -= 1;
     return CAGR;
   };
+  
 
   const calculateFutureValue = () => {
     let futureValue = 0;

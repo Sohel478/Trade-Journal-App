@@ -4,138 +4,132 @@ import "./daily.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getTradeById, updateTrade } from "../../store/slice/tradeLogSlice";
 
-const DailyQuestionnaire = ({ closePopUp, questionnaireId }) => {
+const DailyQuestionnaire = ({ questionnaireId }) => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
-  const reduxData = useSelector((state) => state);
-  const [answers, setAnswers] = useState(null);
-  const answer1Ref = useRef(null);
-  const answer2Ref = useRef(null);
-  const answer3Ref = useRef(null);
-  const answer4Ref = useRef(null);
-  const answer5Ref = useRef(null);
-  const answer6Ref = useRef(null);
-  const answer7Ref = useRef(null);
-  const answer8Ref = useRef(null);
+  const reduxData = useSelector((state) => state?.trades?.data);
+  const [answers, setAnswers] = useState({
+    "Did emotion influence my trade": "",
+    "Did I follow my plan?": "",
+    "Was I confident in my decisions?": "",
+    "Did I experience regret or disappointment?": "",
+    "Did I take unnecessary risks or revenge trade?": "",
+    "Did I feel anxious or stressed?": "",
+    "Was I attached or averse to specific stocks or options?": "",
+    "Ideas for future improvements:": "",
+  });
+  const [successMessage, setSuccessMessage] = useState(false);
+  const [close, setClose] = useState(true);
+  const answerRefs = {
+    "Did emotion influence my trade": useRef(null),
+    "Did I follow my plan?": useRef(null),
+    "Was I confident in my decisions?": useRef(null),
+    "Did I experience regret or disappointment?": useRef(null),
+    "Did I take unnecessary risks or revenge trade?": useRef(null),
+    "Did I feel anxious or stressed?": useRef(null),
+    "Was I attached or averse to specific stocks or options?": useRef(null),
+    "Ideas for future improvements:": useRef(null),
+  };
 
   const handleSubmit = () => {
-    const answer1 = answer1Ref.current.value;
-    const answer2 = answer2Ref.current.value;
-    const answer3 = answer3Ref.current.value;
-    const answer4 = answer4Ref.current.value;
-    const answer5 = answer5Ref.current.value;
-    const answer6 = answer6Ref.current.value;
-    const answer7 = answer7Ref.current.value;
-    const answer8 = answer8Ref.current.value;
+    const updatedAnswers = Object.keys(answerRefs).reduce((acc, key) => {
+      acc[key] = answerRefs[key].current.value;
+      return acc;
+    }, {});
 
-    const data = {
-      emotion_influence: answer1 || null,
-      follow_plan: answer2 || null,
-      ideas_for_future_improvements: answer3 || null,
-      attached_or_averse_to_stocks: answer4 || null,
-      feel_anxious_or_stressed: answer5 || null,
-      take_unnecessary_risks: answer6 || null,
-      experience_regret: answer7 || null,
-      confidence_on_decisions: answer8 || null,
-    };
-    const filteredData = Object.fromEntries(
-      Object.entries(data).filter(([_, value]) => value !== null)
-    );
-
-    setAnswers(filteredData);
+    setAnswers(updatedAnswers);
+    dispatch(updateTrade({ questionnaireId, answers: updatedAnswers, token }));
+    setSuccessMessage(true);
   };
-  useEffect(() => {
-    if (answers) {
-      dispatch(updateTrade({ questionnaireId, answers, token }));
-    }
-  }, [answers]);
 
-  //   useEffect(() => {
-  //     if (reduxData.trades?.selectedTrade) {
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setClose(false);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000); // Add an extra 1 second delay before reloading
+      }, 2000);
+  
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
+  
+
   useEffect(() => {
     if (reduxData.trades?.selectedTrade) {
       const trade = reduxData.trades?.selectedTrade;
 
-      answer1Ref.current.value =
-        trade.emotion_influence != null ? trade.emotion_influence : "";
-      answer2Ref.current.value =
-        trade.follow_plan != null ? trade.follow_plan : "";
-      answer3Ref.current.value =
-        trade.ideas_for_future_improvements != null
-          ? trade.ideas_for_future_improvements
-          : "";
-      answer4Ref.current.value =
-        trade.attached_or_averse_to_stocks != null
-          ? trade.attached_or_averse_to_stocks
-          : "";
-      answer5Ref.current.value =
-        trade.feel_anxious_or_stressed != null
-          ? trade.feel_anxious_or_stressed
-          : "";
-      answer6Ref.current.value =
-        trade.take_unnecessary_risks != null
-          ? trade.take_unnecessary_risks
-          : "";
-      answer7Ref.current.value =
-        trade.experience_regret != null ? trade.experience_regret : "";
-      answer8Ref.current.value =
-        trade.confidence_on_decisions != null
-          ? trade.confidence_on_decisions
-          : "";
+      Object.keys(answerRefs).forEach((key) => {
+        answerRefs[key].current.value = trade[key] || "";
+      });
     }
-    //   }, [reduxData.trades?.selectedTrade]);
-    // }
   }, [reduxData.trades?.selectedTrade]);
 
+  const handleClose = () => {
+    setClose(false);
+    setTimeout(() => {
+    window.location.reload()
+   }, 1000);
+  };
+
+  const handleDownload = () => {
+    const filename = "daily_questionnaire.txt";
+    const data = JSON.stringify(answers, null, 2);
+    const blob = new Blob([data], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <div className="popUUpBg">
-      <div className="filterPopUUp">
-        <div className="filterPopUUpHeader">
-          <p className="popUUpTitle">Daily Questionnaire</p>
-          <div className="closeFilter" onClick={closePopUp}>
-            <img src={CloseIcon} alt="Close" className="closeIcon" />
+    <>
+      {close && (
+        <div className="popUUpBg">
+          <div className="filterPopUUp">
+            <div className="filterPopUUpHeader">
+              <p className="popUUpTitle">Daily Questionnaire</p>
+              <div className="closeFilter" onClick={handleClose}>
+                <img src={CloseIcon} alt="Close" className="closeIcon" />
+              </div>
+            </div>
+            <div className="filterPopUUBody">
+              <div className="questionContainer">
+                {Object.entries(answers).map(([key, value]) => (
+                  <div key={key}>
+                    <p className="question">{key}</p>
+                    <input 
+                      type="text" 
+                      ref={answerRefs[key]} 
+                      className="inputField" 
+                      value={value} 
+                      onChange={(e) => setAnswers(prevState => ({
+                        ...prevState,
+                        [key]: e.target.value
+                      }))} 
+                    />
+                  </div>
+                ))}
+              </div>
+              <button onClick={handleSubmit} className="submitButton">
+                Submit
+              </button>
+              {successMessage && <p>Success!</p>}
+              <button onClick={handleDownload}>Download</button>
+            </div>
           </div>
         </div>
-        <div className="filterPopUUBody">
-          <div className="questionContainer">
-            <p className="question">Did emotion influence my trade?</p>
-            <input type="text" ref={answer1Ref} className="inputField" />
-
-            <p className="question">Did I follow my plan?</p>
-            <input type="text" ref={answer2Ref} className="inputField" />
-
-            <p className="question">Was I confident in my decisions?</p>
-            <input type="text" ref={answer8Ref} className="inputField" />
-
-            <p className="question">
-              Did I experience regret or disappointment?
-            </p>
-            <input type="text" ref={answer7Ref} className="inputField" />
-
-            <p className="question">
-              Did I take unnecessary risks or revenge trade?
-            </p>
-            <input type="text" ref={answer6Ref} className="inputField" />
-
-            <p className="question">Did I feel anxious or stressed?</p>
-            <input type="text" ref={answer5Ref} className="inputField" />
-
-            <p className="question">
-              Was I attached or averse to specific stocks or options?
-            </p>
-            <input type="text" ref={answer4Ref} className="inputField" />
-
-            <p className="question">Ideas for future improvements:</p>
-            <input type="text" ref={answer3Ref} className="inputField" />
-          </div>
-
-          <button onClick={handleSubmit} className="submitButton">
-            Submit
-          </button>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
 export default DailyQuestionnaire;
+
+
+
+

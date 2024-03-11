@@ -90,8 +90,8 @@ const tableHeadingObj = {
   "Trading account": { label: "trading_account", type: "string" },
   "Opening Balance": { label: "opening_balance", type: "number" },
   Image: { label: "image", type: "string" },
-  // "Trade Customizable": { label: "trade_customizable", type: "string" },
-  // "Daily questionnaire": { label: "comment", type: "string" },
+  "Trade Customizable": { label: "trade_customizable", type: "string" },
+  "Daily questionnaire": { label: "comment", type: "string" },
 };
 
 function TradeLog() {
@@ -554,7 +554,7 @@ function TradeLog() {
     <>
  {questionnaireModal && questionnaireId && (
         <DailyQuestionnaire
-          closePopUp={onCloseQuestionnaire}
+          // closePopUp={onCloseQuestionnaire}
           questionnaireId={questionnaireId}
         />
       )}

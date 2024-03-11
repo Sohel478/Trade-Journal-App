@@ -20,6 +20,7 @@ export const sessionAdd = createAsyncThunk(
   "session/sessionAdd",
   async (data) => {
     const dataToSend={
+        sessions_Id: data.sessions_Id,
         session_startDate:data.session_startDate,
         session_endDate:data.session_endDate,
         session_category:data.session_category,
