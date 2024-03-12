@@ -110,6 +110,21 @@ $white: #ffffff;
 }
 }
 
+@media screen and (min-width:330px) and (max-width:950px){
+
+  .customFilterButton .textbox {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+  }
+
+  .customFilterButton ul {
+    margin-top: 20px;
+    width: 329px;
+    margin-left: -30px;
+}
+}
+
 .main-content {
   .table_wrapper {
     .table-responsive {

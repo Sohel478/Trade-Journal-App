@@ -34,6 +34,7 @@ import Pagination from "./Pagination";
 import DailyQuestionnaire from "./DailyQuestionnaire";
 import { getTradeById, updateTrade } from "../../store/slice/tradeLogSlice";
 import Loader from "./../Loader";
+import './TradeLogResponsive.scss'
 
 const tableHeading = [
   "Date",
@@ -587,7 +588,7 @@ function TradeLog() {
                   >
                     Save
                   </li>
-                </ul>
+                </ul> 
               </>
             ) : (
               <>
@@ -597,16 +598,8 @@ function TradeLog() {
                     value={searchText}
                     onChange={handleSearchInputChange}
                     placeholder="Search..."
-                    style={{
-                      width: "30%",
-                      resize: "none",
-                      padding: "10px",
-                      border: "1px solid rgb(201, 201, 201)",
-                      borderRadius: "12px",
-                      height: "40px",
-                      textAlign: "center",
-                      // marginLeft:"20px"
-                    }}
+                   
+                    className="textbox_input"
                   />
                   <ul>
                     <li

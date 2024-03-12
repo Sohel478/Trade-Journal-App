@@ -39,6 +39,10 @@
       line-height: normal;
     }
   }
+  .dashboard-content-wrapper .main-card-wrap .insights-card {
+    height: 400px;
+    border-radius: 8px;
+}
 
   .main-card-wrap {
     .insights-card {
@@ -83,6 +87,7 @@
       }
     }
   }
+
 
   .chat-card {
     .card-header {

@@ -19,7 +19,9 @@ const TradeAccountList = ({ list, setFormStatus,setEditData }) => {
         },
       })
       // console.log("response data",response.data);
-      window.location.reload()
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000); 
       return response.data;
     } catch (error) {
       console.log("Error Occured while delete", error);

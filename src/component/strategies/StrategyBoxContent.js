@@ -24,7 +24,9 @@ const StrategiesBoxContent = ({ strategy }) => {
   };
   const removeHandler = () => {
     dispatch(strategyRemove({ token:token, values: {strategies_Id: strategy.id}}))
-    window.location.reload()
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000); 
   }
   return (
     <div

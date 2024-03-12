@@ -1,0 +1,75 @@
+@media screen and (min-width:330px) and (max-width:950px){
+
+
+    .analytics .tradingAnalyticsHeaderList {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        min-width: 300px;
+        background: #edeff1;
+        height: 450px;
+        border-radius: 8px;
+    }
+
+.tradingAnalyticsHeader{
+    padding-top: 20px;
+    position: relative;
+    left: -35px;
+}
+
+.tradingAnalyticsBodyMiddle ul {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-direction: column;
+}
+
+.tradingAnalyticsBody{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph-controls {
+    flex-direction: column;
+}
+
+.y_axis{
+    display: flex;
+    flex-direction: column;
+}
+
+.x_axis{
+    display: flex;
+    flex-direction: column;
+}
+
+#card_height{
+    height: auto;
+}
+
+.answers {
+line-break: anywhere;
+}
+
+.questionnaire-card {
+    background-color: #fff6fb;
+    border-radius: 15px;
+    padding: 2rem 1.8rem;
+    width: 100%;
+    margin: 1rem;
+}
+
+.add-btn{   
+    display: inline-block;
+    left: 30px;
+    margin-left: auto;
+    position: relative;
+    margin-right: auto;
+
+}
+
+
+}
+

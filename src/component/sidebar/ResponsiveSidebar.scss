@@ -1,0 +1,35 @@
+.responsive-side-wrapper{
+    display: none;
+  }
+
+  @media screen and (min-width:330px) and (max-width:950px){
+    .side-wrapper{
+      display: none;
+    }
+
+    .responsive-side-wrapper{
+        display: block;  
+      }
+
+      .main-content-wrap.is-close {
+        width: 100%;
+    }
+
+    .sidebar-toggle-icon{
+      overflow: visible;
+      box-sizing: content-box;
+      height: 4vh;
+      position: absolute;
+      top: 0;
+      right: 4px;
+    }
+
+    .sidebar.is-close {
+      min-width: 90px;
+      max-width: 90px;
+      margin-left: 0px;
+      position: fixed;
+      height: 100vh;
+  }
+  }
+  

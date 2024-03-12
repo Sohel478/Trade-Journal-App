@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import BarChart from "../BarChart/BarChart";
-import "./home.scss";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { getDashbordData } from "../../store/slice/homeSlice";
@@ -9,12 +8,15 @@ import { GroupedBarChart } from "../Charts/GroupedBarChart";
 import { DailyPnlChart } from "../Charts/DailyPnlChart";
 import { insightsData } from "./data";
 import Loader from "./../Loader";
+import { Row, Col, Container } from "react-bootstrap";
+import './home.scss'
+import './Responsive-home.scss'
 
 const Home = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state?.auth?.token);
   const dataList = useSelector((state) => state?.dashboard?.data);
-  const isLoading=useSelector((state)=>state?.dashboard?.isLoading);
+  const isLoading = useSelector((state) => state?.dashboard?.isLoading);
 
   useEffect(() => {
     dispatch(getDashbordData(token));
@@ -37,7 +39,8 @@ const Home = () => {
 
   return (
     <>
-      <h1>Dashboard</h1>
+      <div>
+      <h1 className="dashboard-heading">Dashboard</h1>
       {!isLoading ?
       <div className="dashboard-content-wrapper">
         <div className="dash-row">
@@ -95,12 +98,13 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="row mt-5 main-card-wrap">
+        <div className="row mt-5 main-card-wrap" >
           <div className="col-md-6 col-12 ">
             <div className="insights-card chat-card list-box">
               <p>Insights</p>
               <ul
                 id="arrow-list"
+                className="arrow-list-descp"
                 style={{ overflowY: "auto", height: "400px" }}
               >
                 <li>
@@ -221,11 +225,11 @@ const Home = () => {
             </div>
           </div>
           <div className="col-md-6 col-12 chat-card">
-            <Card style={{boxShadow: "5px 5px 5px 2px rgba(204, 204, 204, 0.379)"}}>
+            <Card style={{boxShadow: "5px 5px 5px 2px rgba(204, 204, 204, 0.379)"}} className="curve">
               {/* <Card.Header>Equity Curve</Card.Header> */}
               <p>Equity Curve</p>
               <div className="card-body">
-                <CurveChart dataList={dataList} />
+                <CurveChart dataList={dataList} className="equity-curve-content"/>
               </div>
             </Card>
           </div>
@@ -233,7 +237,7 @@ const Home = () => {
 
         <div className="row mt-5">
           <div className="col-md-6 col-12 chat-card">
-            <Card style={{boxShadow: "5px 5px 5px 2px rgba(204, 204, 204, 0.379)"}}>
+            <Card style={{boxShadow: "5px 5px 5px 2px rgba(204, 204, 204, 0.379)"}} className="curve">
               <p>Strategy Performance</p>
               {/* <Card.Header>Strategy Performance</Card.Header> */}
               <div className="card-body">
@@ -243,7 +247,7 @@ const Home = () => {
             </Card>
           </div>
           <div className="col-md-6 col-12 chat-card">
-            <Card style={{boxShadow: "5px 5px 5px 2px rgba(204, 204, 204, 0.379)"}}>
+            <Card style={{boxShadow: "5px 5px 5px 2px rgba(204, 204, 204, 0.379)"}} className="curve">
               <p>Daily PNL</p>
               {/* <Card.Header>Daily PNL</Card.Header> */}
               <div className="card-body">
@@ -255,6 +259,7 @@ const Home = () => {
         </div>
       </div>
          :<Loader />}
+      </div>
     </>
   );
 };

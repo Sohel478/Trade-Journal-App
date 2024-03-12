@@ -11,6 +11,7 @@ import RiskReward from "./calculators/riskReward";
 import StockAverage from "./calculators/stockAverage";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import './CalculatorResponsive.scss'
 
 const Calculator = () => {
   const navigate=useNavigate();

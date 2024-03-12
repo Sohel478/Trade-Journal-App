@@ -5,6 +5,7 @@ import { useStrategy } from "../../context/StrategyContext";
 import { useDispatch, useSelector } from "react-redux";
 import { tradingAccountList } from "../../store/slice/tradingAccountsSlice";
 import TradeAccountList from "./TradeAccountList";
+import './TradingAccountsResponsive.css'
 
 const TradingAccounts = () => {
   const [formStatus, setFormStatus] = useState("list");

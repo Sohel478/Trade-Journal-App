@@ -115,7 +115,7 @@ const AdvancedGraph = () => {
   return (
     <div className="advanced-graph-container">
       <div className="graph-controls">
-        <div>
+        <div className="x_axis">
           <label>X-axis:</label>
           <select
             value={xAxis}
@@ -132,7 +132,7 @@ const AdvancedGraph = () => {
             ))}
           </select>
         </div>
-        <div>
+        <div className="y_axis">
           <label>Y-axis:</label>
           <select
             value={yAxis}
@@ -151,7 +151,7 @@ const AdvancedGraph = () => {
         </div>
       </div>
       <div className="chart-container">
-        <div className="card" style={{height:"500px"}}>
+        <div id="card_height">
           <div className="card-body">
             {dataType === "splittedBarGraph" ? (
               <SplittedBarGraph dataList={chartData} xAxis={xAxis} />

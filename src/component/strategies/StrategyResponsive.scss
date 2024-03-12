@@ -1,0 +1,15 @@
+@media screen and (min-width:330px) and (max-width:950px){
+form {
+    margin-left: 1rem;
+    margin-top: 2rem;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.strategy-card:nth-of-type(1) {
+    background-color: #eef5ff;
+    width: 100%;
+}   
+
+}

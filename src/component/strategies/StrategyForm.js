@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useStrategy } from "../../context/StrategyContext";
 import { strategyAdd, strategyEdit } from "../../store/slice/strategySlice";
 import { useDispatch, useSelector } from "react-redux";
+import './StrategyResponsive.scss'
 
 const StrategyForm = () => {
   const { formData, formToggle, setFormStatus, setFormData, formStatus } = useStrategy();
@@ -21,7 +22,9 @@ const StrategyForm = () => {
       };
       if (formStatus === "add") {
         dispatch(strategyAdd(payload));
-        window.location.reload()
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000); 
       } else if (formStatus === "edit") {
         payload = {
           ...payload,

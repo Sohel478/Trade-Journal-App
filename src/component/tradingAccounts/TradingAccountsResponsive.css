@@ -1,0 +1,28 @@
+@media screen and (min-width:330px) and (max-width:950px){
+    .list-head > div {
+        width: 104%;
+    }
+
+    .Trading-Accounts-Heading{
+        /* margin-left: -29px; */
+    }
+
+    form.trade input, form.trade select, form.trade textarea {
+        width: 262px;
+    }
+
+    form.trade {
+        flex-direction: column;
+        margin-left: -28px;
+    }
+
+    .strategy-box{
+        display: inline-block;
+    }
+    
+    form.trade .form-tile {
+        width: 100%;
+    }
+
+    
+}

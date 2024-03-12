@@ -10,6 +10,7 @@ import TradeAnalyticsTab from "./components/TradeAnalyticsTab";
 import AdvancedGraph from "./components/AdvancedGraph";
 import MonthlyQA from "./components/MonthlyQA";
 import { Routes, useNavigate, Route, Navigate } from "react-router-dom";
+import './ResponsiveAnalytics.scss'
 
 const TradeAnalytics = () => {
   const dispatch = useDispatch();

@@ -1,5 +1,4 @@
 import { Nav } from "react-bootstrap";
-import "./Sidebar.scss";
 import { useState } from "react";
 import Logo from "../../assets/images/tradeJournalLogo.svg";
 import HomeLogo from "../../assets/images/menulogo/Home.svg";
@@ -10,6 +9,8 @@ import SidebarLogo from "../../assets/images/menulogo/Siderbar.svg";
 import SettingLogo from "../../assets/images/menulogo/Setting.svg";
 import ActivityLogo from "../../assets/images/menulogo/Activity.svg";
 import { useNavigate } from "react-router-dom";
+import ResponsiveSidebar from "./ResponsiveSidebar";
+import './Sidebar.scss'
 
 const Sidebar = ({ state, setState }) => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const Sidebar = ({ state, setState }) => {
     });
   };
   return (
+   <>
     <div
       className="side-wrapper"
       onMouseEnter={toggleNavbar}
@@ -142,6 +144,8 @@ const Sidebar = ({ state, setState }) => {
         </Nav>
       </div>
     </div>
+    <ResponsiveSidebar/>
+   </>
   );
 };
 

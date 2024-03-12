@@ -63,7 +63,7 @@ const TradingAccountForm = ({ setFormStatus,editData }) => {
     <div className="strategy-box">
       <form className="trade">
         <div className="form-tile">
-          <label htmlFor="trading_account">* Trading Accounts</label>
+          <label htmlFor="trading_account" className="Trading-Accounts-Heading">* Trading Accounts</label>
           <select
             id="trading_account"
             name="trading_account"
@@ -73,31 +73,31 @@ const TradingAccountForm = ({ setFormStatus,editData }) => {
             placeholder="id format alphanumeric"
             required
           >
-            <option>Select Your Trading Accounts</option>
+            <option className="trading_account_option">Select Your Trading Accounts</option>
             {/* <option>Account 1</option>
             <option>Account 2</option> */}
-            <option>Zerodha</option>
-            <option>Angel One</option>
-            <option>Groww</option>
-            <option>Upstox</option>
-            <option>Icici Direct</option>
-            <option>Hdfc Sec</option>
-            <option>Kotak Sec</option>
-            <option>Motilal oswal</option>
-            <option>Paytm Money</option>
-            <option>Sbi Sec</option>
-            <option>Sharekhan</option>
-            <option>5paisa</option>
-            <option>Iifl Sec</option>
-            <option>Axis Direct</option>
-            <option>Dhan</option>
-            <option>Geojit</option>
-            <option>Fyers</option>
-            <option>Choice Broking</option>
-            <option>Smc Global</option>
-            <option>Alice Blue</option>
-            <option>Religare</option>
-            <option>Others</option>
+            <option className="trading_account_option">Zerodha</option>
+            <option className="trading_account_option">Angel One</option>
+            <option className="trading_account_option">Groww</option>
+            <option className="trading_account_option">Upstox</option>
+            <option className="trading_account_option">Icici Direct</option>
+            <option className="trading_account_option">Hdfc Sec</option>
+            <option className="trading_account_option">Kotak Sec</option>
+            <option className="trading_account_option">Motilal oswal</option>
+            <option className="trading_account_option">Paytm Money</option>
+            <option className="trading_account_option">Sbi Sec</option>
+            <option className="trading_account_option">Sharekhan</option>
+            <option className="trading_account_option">5paisa</option>
+            <option className="trading_account_option">Iifl Sec</option>
+            <option className="trading_account_option">Axis Direct</option>
+            <option className="trading_account_option">Dhan</option>
+            <option className="trading_account_option">Geojit</option>
+            <option className="trading_account_option">Fyers</option>
+            <option className="trading_account_option">Choice Broking</option>
+            <option className="trading_account_option">Smc Global</option>
+            <option className="trading_account_option">Alice Blue</option>
+            <option className="trading_account_option">Religare</option>
+            <option className="trading_account_option">Others</option>
           </select>
           {/* </div>
         <div className="form-tile"> */}

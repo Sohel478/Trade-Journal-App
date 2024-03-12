@@ -138,3 +138,10 @@
   font-weight: bold;
   font-size: 2rem;
 }
+
+
+@media screen and (min-width:330px) and (max-width:950px){
+    .header-wrapper{
+      display: none;
+    }
+}

@@ -20,9 +20,9 @@ import { updateTradeAnalyticsData } from "../../store/slice/tradeAnalyticsSlice"
 import { dashboardUpdateData } from "../../store/slice/homeSlice";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import CloseIcon from "../../assets/images/closeIcon.svg";
-import ResponsiveHeader from "./ResponsiveHeader";
+import './ResponsiveHeader.scss'
 
-const Header = () => {
+const ResponsiveHeader = () => {
   const { starttDate, enddDate } = useParams();
 
   const dispatch = useDispatch();
@@ -170,8 +170,8 @@ const strag = converter(tradesData.filterData[4].selected);
     </button>
   ));
   return (
-   <>
-     <div className="header-wrapper">
+
+<div className="responsive-header">
       <div className="header-left-wrap">
         {excludeLeftWrap.map((el) => el.route).includes(location.pathname) ? (
           <p className="header-title">
@@ -179,7 +179,8 @@ const strag = converter(tradesData.filterData[4].selected);
           </p>
         ) : (
           <>
-            <Link to={"/tradelog"}>
+           <div style={{display:'flex', paddingTop:'20px'}}>
+           <Link to={"/tradelog"}>
               <button className="new-trade-btn">
                 New Trade
                 <img src={PlusIcon} alt="plus" className="plus-icon" />
@@ -194,35 +195,39 @@ const strag = converter(tradesData.filterData[4].selected);
               endDate={endddDate}
               selectsRange
             />
+           </div>
             <div
-              className="flex h-[49px] justify-center items-center text-2xl cursor-pointer cross-icon"
+            //   className="flex h-[49px] justify-center items-center text-2xl cursor-pointer cross-icon"
               onClick={() => onChange([null, null])}
-              style={{fontSize:"2rem",paddingBottom:"8px"}}
+              style={{display:"none"}}
             >
               x
             </div>
             {/* <img src={CloseIcon} style={{height:"20px", marginTop:"1rem"}} onClick={() => onChange([null, null])}/> */}
-            <Link to={"/calendar"} style={{ textDecoration: "none" }}>
-              <Button variant="outline-primary" className="outline-button-cal">
+           <div style={{display:'flex', justifyContent:'space-between', width:'300px', paddingTop:'20px'}}>
+           <Link to={"/calendar"} style={{ textDecoration: "none" }}>
+              <Button variant="outline-primary" className="outline-button-cal" style={{width:'145px', display:'flex', justifyContent:'space-evenly'}}>
                 Calendar
                 <img src={calander} alt="plus" className="plus-icon" />
               </Button>
             </Link>
-            <Button variant="outline-primary" className="outline-button-man" onClick={()=>{
+            <Button variant="outline-primary" className="outline-button-man"  style={{width:'146px', display:'flex', justifyContent:'space-evenly'}}
+            onClick={()=>{
               navigate('/mantra');
             }}>
               Mantra
               <img src={handMoney} alt="plus" className="plus-icon" />
             </Button>
+           </div>
           </>
         )}
       </div>
       <div className="profile-wrapper">
-        <img src={MoonIcon} alt="" className="moonIcon-wrap" />
+        <img src={MoonIcon} alt="" className="moonIcon-wrap" style={{display:'none'}}/>
         <div>
-          <Dropdown>
+          <Dropdown style={{position:'absolute', top:'0', left:'0'}}>
             <Dropdown.Toggle id="dropdown-basic" className="profile-dropdown">
-              <img src={profileImg} alt="" className="profileImg" />
+              <img src="" alt="" className="profileImg" />
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -236,9 +241,8 @@ const strag = converter(tradesData.filterData[4].selected);
       </div>
     </div>
 
-    <ResponsiveHeader/>
-   </>
+  
   );
 };
 
-export default Header;
+export default ResponsiveHeader;

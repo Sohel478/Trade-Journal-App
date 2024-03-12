@@ -1,0 +1,76 @@
+.responsive-header{
+    display: none;
+}
+
+@media screen and (min-width:330px) and (max-width:950px){
+
+    .header-wrapper {
+        display: none;
+    }
+
+    .responsive-header{
+        display: block;
+        width: 300px;
+    }
+
+    .responsive-header .header-left-wrap .new-trade-btn {
+        height: 5.2vh;
+        border-radius: 8.444px;
+        width: 146px;
+        background: #0075ff;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        color: #fff;
+        padding: 10px;
+        box-shadow: none;
+        border: none;
+        margin-right: 10px;
+        font-size: 10px;
+    }
+
+    .DateInput {
+        border-radius: 8.444px;
+        background: #f8f7ff;
+        width: 145.379px;
+        /* height: 49.609px; */
+        box-shadow: none;
+        border: none;
+        /* margin-right: 31px; */
+        color: #a5a2b8;
+        font-family: "DM Sans", sans-serif;
+        font-size: 16.888px;
+        font-style: normal;
+        font-weight: 500;
+        /* line-height: normal; */
+        display: flex;
+        align-items: center;
+        /* justify-content: space-between; */
+        /* padding-right: 0; */
+        /* padding-left: 24px; */
+    }
+
+    .header-title {
+        text-align: center;
+    }
+    
+    .DateInput .clock-icon {
+       width: 30.553px; 
+      background-color: #0075ff;
+      margin-left: auto;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top-right-radius: 8.444px;
+      border-bottom-right-radius: 8.444px;
+    }
+    
+    .cross-icon{
+        display: none;
+    }
+    
+    
+    
+    }
+    
