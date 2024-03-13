@@ -199,7 +199,7 @@ const strag = converter(tradesData.filterData[4].selected);
               onClick={() => onChange([null, null])}
               style={{fontSize:"2rem",paddingBottom:"8px"}}
             >
-              x
+              
             </div>
             {/* <img src={CloseIcon} style={{height:"20px", marginTop:"1rem"}} onClick={() => onChange([null, null])}/> */}
             <Link to={"/calendar"} style={{ textDecoration: "none" }}>
@@ -222,12 +222,15 @@ const strag = converter(tradesData.filterData[4].selected);
         <div>
           <Dropdown>
             <Dropdown.Toggle id="dropdown-basic" className="profile-dropdown">
-              <img src={profileImg} alt="" className="profileImg" />
+              <img src="" alt="" className="profileImg" />
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
               <Dropdown.Item href="#" onClick={logout}>
                 Logout
+              </Dropdown.Item>
+              <Dropdown.Item >
+                Pricing
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

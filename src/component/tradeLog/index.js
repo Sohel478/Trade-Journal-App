@@ -601,18 +601,19 @@ function TradeLog() {
                    
                     className="textbox_input"
                   />
-                  <ul>
-                    <li
+                  <div className="tradelog-buttons">
+                    <button
                       // onClick={() => {
                       //   setEdit(true);
                       // }}
+                      id="tradelog-btn"
                     >
                       Edit
                       <span>
                         <img src={EditIcon} alt="edit filter" height={18} width={18}/>
                       </span>
-                    </li>
-                    <li className="export-data">
+                    </button>
+                    <button className="export-data"  id="tradelog-btn">
                       <CSVLink
                         data={tradeList.map((el) => ({
                           ...el,
@@ -630,14 +631,14 @@ function TradeLog() {
                         Export
                         <img src={ExportIcon} alt="main filter" />
                       </CSVLink>
-                    </li>
-                    <li onClick={togglePopUp}>
+                    </button>
+                    <button onClick={togglePopUp}  id="tradelog-btn1">
                       Filters{" "}
                       <span>
                         <img src={FilterIcon} alt="main filter" />
                       </span>
-                    </li>
-                  </ul>
+                    </button>
+                  </div>
                 </div>
               </>
             )}
@@ -2548,14 +2549,9 @@ function TradeLog() {
             </div>
           </div>
           <div
-            style={{
-              marginTop: "100px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            
           >
-            <img src={NoTradeData} alt="noTradeLogDataFound" />
+            <img src={NoTradeData} alt="noTradeLogDataFound" className="no-tradelog-data-img"/>
           </div>
         </>
       ) : (

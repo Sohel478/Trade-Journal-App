@@ -3,6 +3,33 @@
         margin-top: 10px;
       width: 300px;
     }
+
+    .tradelog-buttons{
+      display: flex;
+      margin-top: 15px;
+      justify-content: space-between;
+      width: 309px;
+    }
+
+    #tradelog-btn{
+    padding-left: 20px;
+    border-radius: 10px;
+    height: 45px;
+    border: none;
+    }
+
+    #tradelog-btn1{
+      padding: 0 20px;
+      border-radius: 15px;
+      background-color: #0075ff;
+      color: white;
+      border: none;
+    }
+
+    .no-tradelog-data-img{
+      margin-top: 50px;
+      width: 300px;
+    }
   }
 
   

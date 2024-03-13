@@ -8,7 +8,7 @@ import {
   uploadPreviousTradebookFile,
   updateTradebookData,
 } from "../../store/slice/toolSlice";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Button, Container, Row, Col, Table } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import arrowDown from "./../../assets/images/arrowDown.svg";
 import TradeLog from "../tradeLog";
@@ -19,6 +19,7 @@ import { sessionList, sessionAdd, sessionRemove } from "../../store/slice/sessio
 import { Route,Routes,Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import './ToolsResponsive.scss'
 
 const Tools = () => {
   const token = useSelector(state => state.auth.token)
@@ -74,6 +75,7 @@ const Tools = () => {
       path: "tools/previous-tradebook",
     },
   ]);
+
 
   const uploadToServer = () => {
     if (fileRef.current) {
@@ -305,7 +307,7 @@ const Tools = () => {
               {toolsHeaders.length &&
                 toolsHeaders.map((item, i) => {
                   return (
-                    <li key={i}>
+                    <li key={i} className="tools-list-input">
                       <div
                         className={item.active ? "active" : undefined}
                         onClick={() => {
@@ -321,7 +323,8 @@ const Tools = () => {
             </ul>
             {toolsHeadersCurrent == "Sessions" ? (
               <>
-                <Button
+               <div className="tools-buttons">
+               <Button
                   variant="primary"
                   className="reset-button"
                   onClick={onSaveSession}
@@ -335,6 +338,7 @@ const Tools = () => {
                 >
                   Reset
                 </Button>
+               </div>
               </>
             ) : toolsHeadersCurrent == "Previous Tradebook" ? (
               <div className="buttons-section">
@@ -478,7 +482,7 @@ const Tools = () => {
                     </Row>
                     <Row>
                       <Col>
-                        <table className="table table-striped table-bordered">
+                        <Table responsive className="custom-table">
                           <thead>
                             <tr>
                               <th>Start Date</th>
@@ -486,6 +490,8 @@ const Tools = () => {
                               <th>Category</th>
                               <th>Rating</th>
                               <th>Lessons Learned</th>
+                              <th>Edit</th>
+                              <th>Delete</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -504,7 +510,7 @@ const Tools = () => {
                                   <td
                                     style={{
                                       width: "250px",
-                                      maxWidth: "250px", // Adjust the value based on your preference
+                                      maxWidth: "250px", 
                                       wordWrap: "break-word",
                                       overflowWrap: "break-word",
                                     }}
@@ -536,19 +542,19 @@ const Tools = () => {
                                       </>
                                     )}
                                   </td>
-                                   {/* Edit button */}
+                                 
                                 <td>
-                                  <button onClick={() => handleEditClick(i)}>Edit</button>
+                                  <button onClick={() => handleEditClick(i)} className="custom-button">Edit</button>
                                 </td>
-                                {/* Delete button */}
+                               
                                 <td>
-                                  <button onClick={() => handleDeleteClick(i)}>Delete</button>
+                                  <button onClick={() => handleDeleteClick(i)} className="custom-button">Delete</button>
                                 </td>
                                 </tr>
                               );
                             })}
                           </tbody>
-                        </table>
+                        </Table>
                       </Col>
                     </Row>
                   </Container>

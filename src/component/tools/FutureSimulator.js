@@ -254,7 +254,7 @@ const FutureSimulator = () => {
               </select>
             </div>
           </div>
-          <div>
+          <div className="future-date">
             <DatePicker
               selected={startDate}
               onChange={(date) => setStartDate(date)}
@@ -264,7 +264,7 @@ const FutureSimulator = () => {
               maxDate={new Date()}
             />
           </div>
-          <div>
+          <div className="future-date">
             <DatePicker
               selected={endDate}
               // onChange={(date) => setEndDate(date)}
@@ -276,11 +276,12 @@ const FutureSimulator = () => {
             />
           </div>
         </div>
-        <div>
+        <div className="future-simulator-button">
           <Button
             variant="primary"
             className="reset-button"
             onClick={onProject}
+           
           >
             Project
           </Button>
@@ -296,8 +297,10 @@ const FutureSimulator = () => {
       {stockData.length > 0 && isOneMonthGap() ? (
         <div className="graph-container">
           <h2>Future Simulator</h2>
+          <div className="chart-scroll">
           <div>
-            <Line options={options} data={chartData} height={"100%"} />
+            <Line options={options} data={chartData}  />
+          </div>
           </div>
         </div>
       ) : (
@@ -308,19 +311,14 @@ const FutureSimulator = () => {
             alignItems: "center",
           }}
         >
-          <img src={NoData} alt="NodataImage" height="366.6px" width="492px" />
-          <div style={{ width: "583px", height: "82px" }}>
-            <p
-              style={{
-                textAlign: "center",
-                fontSize: "26px",
-                lineHeight: "41px",
-                fontWeight: "500",
-              }}
+          <img src={NoData} alt="NodataImage" className="no-data-image" />
+          <div style={{height: "82px" }}>
+            <div
+            className="future-note"
             >
-              To use this feature, just make sure you have at least one month of
+              To use this feature, just make sure <br/> you have at least one month of
               data.
-            </p>
+            </div>
           </div>
         </div>
       )}

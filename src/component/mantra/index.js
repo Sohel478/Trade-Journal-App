@@ -5,6 +5,7 @@ import { mantraList } from "../../store/slice/mantraSlice";
 import InvertedComma from "./../../assets/images/invertedCommas.svg";
 import MantrasBox from "./MantrasBox";
 import MantraForm from "./MantraForm";
+import './ResponsiveMantra.css'
 
 const Mantra = () => {
   const token = useSelector((state) => state.auth.token);
@@ -43,7 +44,7 @@ const Mantra = () => {
   }, []);
 
   return (
-    <div>
+    <div className="mantra-container">
       <div>
         {/* <p className="heading-mantra">Mantra</p> */}
         <div className="mantra-description">

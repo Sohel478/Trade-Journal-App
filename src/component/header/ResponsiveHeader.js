@@ -234,6 +234,9 @@ const strag = converter(tradesData.filterData[4].selected);
               <Dropdown.Item href="#" onClick={logout}>
                 Logout
               </Dropdown.Item>
+              <Dropdown.Item >
+                Pricing
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           {/* <h3 className="profile-name">Bessie Cooper</h3> */}

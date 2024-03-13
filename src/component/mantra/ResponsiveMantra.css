@@ -1,0 +1,18 @@
+@media screen and (min-width: 330px) and (max-width: 950px) {
+    .mantra-container{
+        margin-top: 20px;
+    }
+
+    .mantra-card{
+        width: unset;
+        /* margin-top: 278px; */
+    }
+
+    .add-btn{
+        margin-left: 22px;
+    }
+
+    .mantra-description{
+        height: auto;
+    }
+}
