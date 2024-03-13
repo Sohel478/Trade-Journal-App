@@ -130,18 +130,6 @@ const Sidebar = ({ state, setState }) => {
             </Nav.Link>
           </Nav.Item>
         </Nav>
-        <Nav className="sidebar-header">
-          <Nav.Item>
-            <Nav.Link onClick={() => handleNavigate("/pricing")}>
-              <img src={pennewSquer} alt="Logo" />
-              {state?.collapsed ? (
-                <span className="text-light nav-items ms-2">pricing</span>
-              ) : (
-                ""
-              )}
-            </Nav.Link>
-          </Nav.Item>
-        </Nav>
       </div>
     </div>
     <ResponsiveSidebar/>
