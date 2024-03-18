@@ -110,7 +110,7 @@ const Login = () => {
             <Row style={{display:'flex', justifyContent:'space-between'}}>
               <Col md={6} className="login__form--container">
                 <Form style={{ width: "80%", display:'flex', flexDirection:'column', marginTop:'-50px', marginLeft:'-40px' }}>
-                  <h1>Login to your account Prince</h1>
+                  <h1>Login to your account</h1>
                   <FormGroup>
                     <FormLabel>Email Address</FormLabel>
                     <Field
