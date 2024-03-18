@@ -1,161 +1,7 @@
-
-// import React from 'react';
-// import { Container, Row, Col, Card, Button} from 'react-bootstrap';
-// import { FaChartLine, FaShieldAlt, FaUsers } from 'react-icons/fa';
-// import { BiDollarCircle } from 'react-icons/bi';
-// import './Pricing.css';
-// import Footer from '../Footer/Footer';
-// import Navigation from '../Home/Naviagtion';
-
-// const GreenTickIcon = () => (
-//   <img src='https://duzycfafl38re.cloudfront.net/Website/Images/tick2311202217560924112022100903.png' alt='network error'/>
-// );
-
-
-// const PricingPage = () => {
-
-
-//   const features = [
-//     { icon: <FaChartLine />, title: 'Advanced Charts', description: 'Visualize market trends with interactive charts.' },
-//     { icon: <BiDollarCircle />, title: 'Real-time Data', description: 'Stay updated with live pricing and market data.' },
-//     { icon: <FaShieldAlt />, title: 'Secure Transactions', description: 'Ensuring the safety of your financial transactions.' },
-//     { icon: <FaUsers />, title: 'Expert Support', description: 'Access priority support from our expert team.' },
-//   ];
-
-
-//   const plans = [
-//     {
-//       title: 'Basic Plan',
-//       features: [
-//         { icon: <GreenTickIcon />, text: 'Essential Features' },
-//         { icon: <GreenTickIcon />, text: 'Real-time Market Data' },
-//         { icon: <GreenTickIcon /> , text: 'Limited Analytics Tools' },
-//         { icon: <GreenTickIcon /> , text: 'Market Breadth' },
-//         { icon: <GreenTickIcon /> , text: 'Pre-Defined Trading Strategies' },
-//         { icon: <GreenTickIcon /> , text: 'Investment Ideas' },
-//         { icon: <GreenTickIcon /> , text: 'Derivative Analytics' },
-//         { icon: <GreenTickIcon /> , text: 'Combination Scans' },
-//         { icon: <GreenTickIcon /> , text: 'Company Filings' },
-//         { icon: <GreenTickIcon />, text: 'Access to interactive Edge Chart' },
-//         { icon: <GreenTickIcon />, text: 'Tab Customization' },
-
-//       ],
-//       price: '$9.99/month',
-//       color: 'dark',
-//     },
-//     // {
-//     //   title: 'Pro Plan',
-//     //   features: [
-//     //     { icon: <FaChartLine />, text: 'Advanced Trading Features' },
-//     //     { icon: <FaShieldAlt />, text: 'Comprehensive Analytics' },
-//     //     { icon: <FaUsers />, text: 'Priority Customer Support' },
-//     //   ],
-//     //   price: '$19.99/month',
-//     //   color: 'dark',
-//     // },
-//     { 
-//       title: 'Premium Plan',
-//       features: [
-//         { icon: <GreenTickIcon />, text: 'Full Access to All Features' },
-//         { icon: <GreenTickIcon />, text: 'Personalized Analytics Dashboard' },
-//         { icon: <GreenTickIcon />, text: '24/7 Premium Support' },
-//         { icon: <GreenTickIcon />, text: 'Technical Peer Comparison' },
-//         { icon: <GreenTickIcon />, text: 'Sectoral/Company analysis' },
-//         { icon: <GreenTickIcon />, text: 'Trading and Investment ideas' },
-//       ],
-//       price: '$29.99/month',
-//       color: 'dark',
-//     },
-//   ];
-
-//   return (
-//     <div>
-//       <Navigation />
-//       {/* Hero Section with Banner */}
-//       <div className="hero-banner" >
-//         <Container className="py-5 text-center">
-//           <h1 className="display-4">Empower Your Trading Journey</h1>
-//           <p className="lead">Unlock advanced features and make informed decisions in the financial markets.</p>
-//           <Button variant="primary" size="lg">
-//             Get Started
-//           </Button>
-//         </Container>
-//       </div>
-
-//       {/* Features Section */}
-//       {/* <Container id="features" className="py-5"> */}
-//       <Container id="features"  className="py-5">
-//         <h2 className="text-center mb-4">Key Features</h2>
-//         <Row className="justify-content-center">
-//           {features.map((feature, index) => (
-//             <Col key={index} md={4} className="mb-4">
-//               <Card className="text-center">
-//                 <Card.Body>
-//                   <Card.Title>{feature.icon}</Card.Title>
-//                   <Card.Title>{feature.title}</Card.Title>
-//                   <Card.Text>{feature.description}</Card.Text>
-//                 </Card.Body>
-//               </Card>
-//             </Col>
-//           ))}
-//         </Row>
-//       </Container>
-
-//       {/* Pricing Section */}
-//       <Container className="mt-5 pricing-section" id="pricing">
-//   <h2 className="text-center mb-4">Choose Your Plan</h2>
-//   <Row className="justify-content-center">
-//     {plans.map((plan, index) => (
-//       <Col key={index} md={4} className="mb-4">
-//         <Card className={`text-center pricing-card`} style={{ background: '#fff', boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)' }}>
-//           <Card.Header className="pricing-card-header">
-//             <h3 className="pricing-card-title">{plan.title}</h3>
-//           </Card.Header>
-//           <Card.Body className="pricing-card-body">
-//             <ul className="pricing-card-features">
-//               {plan.features.map((feature, i) => (
-//                 <li key={i} className="pricing-card-feature">
-//                   <span className="pricing-card-feature-icon">{feature.icon}</span>
-//                   {feature.text}
-//                 </li>
-//               ))}
-//             </ul>
-//             <Card.Text className="pricing-card-price">{plan.price}</Card.Text>
-//           </Card.Body>
-//           <Button variant={plan.color} block>
-//            Buy Now
-//           </Button>
-//         </Card>
-//       </Col>
-//     ))}
-//   </Row>
-// </Container>
-
-//       {/* Contact Section */}
-//       <Container id="contact" className="py-5 text-center">
-//         <h2 className="mb-4">Contact Us</h2>
-//         <p>Have questions or need assistance? Reach out to our support team.</p>
-//         <Button variant="primary" size="lg">
-//           Contact Support
-//         </Button>
-//       </Container>
-
-//       {/* Footer */}
-//       <Footer />
-//     </div>
-//   );
-// };
-
-// export default PricingPage;
-
-
-import React, { useState } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { FaChartLine, FaShieldAlt, FaUsers } from 'react-icons/fa';
-import { BiDollarCircle } from 'react-icons/bi';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
+import axios from 'axios';
 import './Pricing.css';
-// import Footer from '../Footer/Footer';
-// import Navigation from '../Home/Naviagtion';
 
 const GreenTickIcon = () => (
   <img src='https://duzycfafl38re.cloudfront.net/Website/Images/tick2311202217560924112022100903.png' alt='network error' />
@@ -163,123 +9,138 @@ const GreenTickIcon = () => (
 
 const PricingPage = () => {
   const [selectedPlan, setSelectedPlan] = useState('monthly');
+  const [plans, setPlans] = useState([]);
 
-  const handlePlanToggle = (value) => {
-    setSelectedPlan(value);
+  
+  useEffect(() => {
+    fetchPlans();
+  }, []);
+
+  const fetchPlans = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/plans');
+      setPlans(response.data);
+    } catch (error) {
+      console.error('Error fetching plans:', error);
+    }
   };
 
-  const plans = [
-    {
-      title: 'Basic Plan',
-      features: [
-        { icon: <GreenTickIcon />, text: 'Essential Features' },
-        { icon: <GreenTickIcon />, text: 'Real-time Market Data' },
-        { icon: <GreenTickIcon />, text: 'Limited Analytics Tools' },
-        { icon: <GreenTickIcon />, text: 'Market Breadth' },
-        { icon: <GreenTickIcon />, text: 'Pre-Defined Trading Strategies' },
-        { icon: <GreenTickIcon />, text: 'Investment Ideas' },
-        { icon: <GreenTickIcon />, text: 'Derivative Analytics' },
-        { icon: <GreenTickIcon />, text: 'Combination Scans' },
-        { icon: <GreenTickIcon />, text: 'Company Filings' },
-        { icon: <GreenTickIcon />, text: 'Access to interactive Edge Chart' },
-        { icon: <GreenTickIcon />, text: 'Tab Customization' },
-      ],
-      monthlyPrice: '$9.99',
-      yearlyPrice: '$99.99',
-    },
-    {
-      title: 'Premium Plan',
-      features: [
-        { icon: <GreenTickIcon />, text: 'Full Access to All Features' },
-        { icon: <GreenTickIcon />, text: 'Personalized Analytics Dashboard' },
-        { icon: <GreenTickIcon />, text: '24/7 Premium Support' },
-        { icon: <GreenTickIcon />, text: 'Technical Peer Comparison' },
-        { icon: <GreenTickIcon />, text: 'Sectoral/Company analysis' },
-        { icon: <GreenTickIcon />, text: 'Trading and Investment ideas' },
-      ],
-      monthlyPrice: '$29.99',
-      yearlyPrice: '$299.99',
-    },
-  ];
+  const addPlan = async () => {
+    try {
+      const newPlan = {
+        title: 'New Plan',
+        features: ['New Feature 1', 'New Feature 2'],
+        monthlyPrice: '$19.99',
+        yearlyPrice: '$199.99',
+      };
+  
+      console.log('New Plan:', newPlan); // Log the new plan object
+  
+      const response = await axios.post('http://localhost:8000/api/plans', newPlan);
+      console.log('Add Plan Response:', response.data); // Log the response from the API
+  
+      fetchPlans();
+    } catch (error) {
+      console.error('Error adding plan:', error);
+    }
+  };
+  
+
+  const deletePlan = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8000/api/plans/${id}`);
+      fetchPlans();
+    } catch (error) {
+      console.error('Error deleting plan:', error);
+    }
+  };
+
+  const updatePlan = async (id, updatedPlan) => {
+    try {
+      await axios.put(`http://localhost:8000/api/plans/${id}`, updatedPlan);
+      fetchPlans();
+    } catch (error) {
+      console.error('Error updating plan:', error);
+    }
+  };
+
+  const handleEdit = (planIndex) => {
+    const updatedPlans = [...plans];
+    updatedPlans[planIndex].editing = true;
+    setPlans(updatedPlans);
+  };
+
+  const handleSave = (planIndex, planId) => {
+    const updatedPlan = plans[planIndex];
+    delete updatedPlan.editing;
+    updatePlan(planId, updatedPlan);
+  };
+
+  const handleChange = (e, field, planIndex) => {
+    const { value } = e.target;
+    const updatedPlans = [...plans];
+    updatedPlans[planIndex][field] = value;
+    setPlans(updatedPlans);
+  };
+
+  const handleChangeFeature = (e, featureIndex, planIndex) => {
+    const { value } = e.target  ;
+    // Create a deep copy of the plans array
+    const updatedPlans = JSON.parse(JSON.stringify(plans));
+    // Update the specific feature text
+    updatedPlans[planIndex].features[featureIndex].text = value;
+    // Update the state with the new plans array
+    setPlans(updatedPlans);
+  };
+  
 
   return (
     <div>
-      {/* <Navigation /> */}
-      {/* <div className="hero-banner">
-        <Container className="py-5 text-center">
-          <h1 className="display-4">Empower Your Trading Journey</h1>
-          <p className="lead">Unlock advanced features and make informed decisions in the financial markets.</p>
-          <Button variant="primary" size="lg">Get Started</Button>
-        </Container>
-      </div> */}
-
       <Container className="mt-5 pricing-section" id="pricing">
         <h2 className="text-center mb-4">Choose Your Plan</h2>
-        <div className="d-flex justify-content-center mb-3">
-        <div className="toggle-container">
-              <Button
-                variant={selectedPlan === 'monthly' ? 'primary' : 'outline-primary'}
-                onClick={() => handlePlanToggle('monthly')}
-                className="mx-2 monthly-toggle"
-                style={{ border: 'none', borderRadius:'20px' }} 
-              >
-                Monthly
-              </Button>
-              <Button
-                variant={selectedPlan === 'yearly' ? 'primary' : 'outline-primary'}
-                onClick={() => handlePlanToggle('yearly')}
-                className="mx-2 yearly-toggle" 
-                style={{ border: 'none',borderRadius:'20px' }} 
-              >
-                Yearly
-              </Button>
-        </div>
-
-        </div>
         <Row className="justify-content-center">
-            {plans.map((plan, index) => (
-                <Col key={index} md={4} className="mb-4">
-                  <div className="pricing-card-wrapper d-flex flex-column h-100"> 
-            <Card className={`text-center pricing-card h-100`} style={{ background: '#fff', boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)' }}>
-        <Card.Header className="pricing-card-header">
-                <h3 className="pricing-card-title">{plan.title}</h3>
-        </Card.Header>
-          <Card.Body className="pricing-card-body d-flex flex-column justify-content-between"> 
-            <div>
-              <ul className="pricing-card-features">
-                {plan.features.map((feature, i) => (
-                  <li key={i} className="pricing-card-feature">
-                    <span className="pricing-card-feature-icon">{feature.icon}</span>
-                    {feature.text}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
-              <Card.Text className="pricing-card-price" style={{fontSize:'35px'}}>{selectedPlan === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice}</Card.Text>
-              <div style={{paddingTop:'15px', fontSize:'18px'}}>{selectedPlan === 'monthly' ? '/Month' : '/year'}</div>
-            </div>
-          </Card.Body>
-          <Button variant="dark" block>Buy Now</Button>
-        </Card>
-
-        </div>
-          </Col>
+          {plans.map((plan, index) => (
+            <Col key={index} md={4} className="mb-4">
+              <div className="pricing-card-wrapper d-flex flex-column h-100">
+                <Card className="text-center pricing-card h-100" style={{ background: '#fff', boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)' }}>
+                  <Card.Header className="pricing-card-header">
+                    {plan.editing ? (
+                      <Form.Control type="text" value={plan.title} onChange={(e) => handleChange(e, 'title', index)} />
+                    ) : (
+                      <h3 className="pricing-card-title">{plan.title}</h3>
+                    )}
+                  </Card.Header>
+                  <Card.Body className="pricing-card-body d-flex flex-column justify-content-between">
+                  <div>
+                      <ul className="pricing-card-features">
+                        {plan.features.map((feature, i) => (
+                          <li key={i} className="pricing-card-feature">
+                            <span className="pricing-card-feature-icon"><GreenTickIcon /></span>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <Card.Text className="pricing-card-price" style={{ fontSize: '35px' }}>{selectedPlan === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice}</Card.Text>
+                      <div style={{ paddingTop: '15px', fontSize: '18px' }}>{selectedPlan === 'monthly' ? '/Month' : '/Year'}</div>
+                    </div>
+                  </Card.Body>
+                  {plan.editing ? (
+                    <Button variant="primary" block onClick={() => handleSave(index, plan.planId)}>Save</Button>
+                  ) : (
+                    <Button variant="primary" block onClick={() => handleEdit(index)}>Edit</Button>
+                  )}
+                  <Button variant="danger" block onClick={() => deletePlan(plan.planId)}>Delete</Button>
+                </Card>
+              </div>
+            </Col>
           ))}
         </Row>
+        <Button variant="success" onClick={addPlan}>Add Plan</Button>
       </Container>
-  {/* Contact Section */}
-          <Container id="contact" className="py-5 text-center">
-          <h2 className="mb-4">Contact Us</h2>
-          <p>Have questions or need assistance? Reach out to our support team.</p>
-        <Button variant="primary" size="lg">
-          Contact Support
-        </Button>
-          </Container>
-      {/* <Footer /> */}
     </div>
   );
 };
 
 export default PricingPage;
-

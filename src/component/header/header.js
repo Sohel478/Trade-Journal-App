@@ -21,6 +21,7 @@ import { dashboardUpdateData } from "../../store/slice/homeSlice";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import CloseIcon from "../../assets/images/closeIcon.svg";
 import ResponsiveHeader from "./ResponsiveHeader";
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   const { starttDate, enddDate } = useParams();
@@ -169,6 +170,13 @@ const strag = converter(tradesData.filterData[4].selected);
       </span>
     </button>
   ));
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
    <>
      <div className="header-wrapper">
@@ -218,22 +226,22 @@ const strag = converter(tradesData.filterData[4].selected);
         )}
       </div>
       <div className="profile-wrapper">
-        <img src={MoonIcon} alt="" className="moonIcon-wrap" />
+        {/* <img src={MoonIcon} alt="" className="moonIcon-wrap" /> */}
         <div>
-          <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic" className="profile-dropdown">
-              <img src="" alt="" className="profileImg" />
-            </Dropdown.Toggle>
+        <Dropdown >
+      <Dropdown.Toggle id="dropdown-basic" className="profile-dropdown" onClick={toggleDropdown}>
+        <FontAwesomeIcon icon={faUser} style={{color:'black', fontSize:'20px'}} onClick={toggleDropdown}/>
+      </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              <Dropdown.Item href="#" onClick={logout}>
-                Logout
-              </Dropdown.Item>
-              <Dropdown.Item >
-                Pricing
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+      <Dropdown.Menu show={isOpen}>
+        <Dropdown.Item href="#" onClick={logout}>
+          Logout
+        </Dropdown.Item>
+        <Dropdown.Item to={'/pricing'} >
+          Pricing
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
           {/* <h3 className="profile-name">Bessie Cooper</h3> */}
         </div>
       </div>

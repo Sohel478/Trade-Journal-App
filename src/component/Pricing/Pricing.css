@@ -57,11 +57,18 @@
     margin-top: 20px;
   }
 
+
   .toggle-container{
+    display: flex;
+    justify-content: center;
+  }
+
+  .button-container{
     border: 1px solid black;
     border-radius: 23px;
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 5px;  
+    width: 182px;
   }
 
   .monthly-toggle:hover,
